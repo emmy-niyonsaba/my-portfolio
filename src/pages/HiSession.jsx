@@ -1,7 +1,9 @@
 
 
+
+import React from "react";
+import{profile} from '../../public/images/index.js';
 const HiSession = () => {
-const profile_image = "src/images/profile-image.jpg";
 
   return (
     <section className="w-full bg-blue-900 py-20 px-6 md:px-20">
@@ -29,7 +31,7 @@ const profile_image = "src/images/profile-image.jpg";
         {/* Right Image */}
         <div className="flex justify-center">
           <img
-            src={profile_image}
+            src={profile}
             alt="Profile"
             className="w-60 h-60 md:w-80 md:h-80 object-cover rounded-3xl shadow-lg border-4 border-blue-800"
           />

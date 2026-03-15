@@ -1,5 +1,4 @@
 
-
 export default function Resume() {
   return (
     <section className="min-h-screen w-full bg-gray-100 py-16 px-6 md:px-20">

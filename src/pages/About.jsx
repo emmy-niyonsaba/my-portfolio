@@ -1,3 +1,5 @@
+import{network,coder} from '../../public/images/index.js';
+
 const About = () => {
   return (
     <section
@@ -21,7 +23,7 @@ const About = () => {
         {/* Image */}
         <div className="md:w-1/2 flex justify-center">
           <img
-            src="src/images/coder.jpg"
+            src={coder}
             alt="Development"
             className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-lg border-4 border-blue-200"
           />
@@ -42,7 +44,7 @@ const About = () => {
         </div>
         <div className="md:w-1/2 flex justify-center md:order-2">
           <img
-            src="src/images/network.jpg"
+            src={network}
             alt="Networking"
             className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-lg border-4 border-blue-200"
           />
