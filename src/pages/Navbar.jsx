@@ -1,12 +1,34 @@
-// Navbar.jsx
-const Navbar = () => {
+const Navbar = ({ sections = [], activeSection, onNavigate }) => {
     return (
-        <nav className="bg-black text-white p-4 flex gap-6 sticky top-0">
-            <a href="#resume" className="hover:text-amber-400">Resume</a>
-            <a href="#skills" className="hover:text-amber-400">Skills</a>
-            <a href="#projects" className="hover:text-amber-400">Projects</a>
-            <a href="#footer" className="hover:text-amber-400">Footer</a>
-        </nav>
+        <header className="navbar">
+            <div className="navbar__inner">
+                <div className="navbar__brand" aria-label="Emmanuel Niyonsaba brand">
+                    <span className="navbar__mark">EN</span>
+                    <span className="navbar__text">Portfolio</span>
+                </div>
+
+                <nav className="navbar__links" aria-label="Primary">
+                    {sections.map(({ id, label }) => (
+                        <button
+                            key={id}
+                            type="button"
+                            className={`navbar__link ${activeSection === id ? 'is-active' : ''}`}
+                            onClick={() => onNavigate?.(id)}
+                        >
+                            {label}
+                        </button>
+                    ))}
+                </nav>
+
+                <button
+                    type="button"
+                    className="navbar__cta"
+                    onClick={() => onNavigate?.('footer')}
+                >
+                    Hire me
+                </button>
+            </div>
+        </header>
     );
 };
 
