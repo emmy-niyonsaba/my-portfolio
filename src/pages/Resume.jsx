@@ -23,7 +23,7 @@ export default function Resume() {
           <h2 className="text-2xl font-semibold mb-4 text-blue-600">Experience</h2>
 
           <div className="mb-6">
-            <h3 className="font-bold text-lg">Software Developer</h3>
+            <h3 className="font-bold text-lg text-black">Software Developer</h3>
             <p className="text-sm text-gray-600">2023 - Present</p>
             <p className="mt-2 text-gray-700">
               Working with modern technologies like React, Node.js, PHP and Tailwind CSS
@@ -32,10 +32,20 @@ export default function Resume() {
           </div>
 
           <div>
-            <h3 className="font-bold text-lg">Networking Technician</h3>
+            <h3 className="font-bold text-lg text-black">Networking Technician</h3>
             <p className="text-sm text-gray-600">2022 - Present</p>
             <p className="mt-2 text-gray-700">
               Providing network maintenance, configuration and troubleshooting for clients.
+            </p>
+          </div>
+          <div className=" mt-6" >
+            <h3 className="font-bold text-lg text-black">Coaching && Mentoring</h3>
+            <p className="text-sm text-gray-600">januarl-2025 september 2025</p>
+            <p className="mt-2 text-gray-700">
+              Coaching and mentoring junior developers, sharing knowledge and best practices
+               to help them grow in their careers. <br /><br />
+               Involved in code reviews, pair programming sessions, and technical workshops to foster a collaborative learning environment. 
+               <br /> <br />A special on the Javascript,nodes.js,react and php programming languages.
             </p>
           </div>
         </div>
