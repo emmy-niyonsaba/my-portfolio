@@ -6,6 +6,12 @@ const Hero = ({ onNavigate }) => {
       id="home"
       className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-20 py-24 relative overflow-hidden bg-ink"
     >
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url("/images/me.jpg")' }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-black/65" aria-hidden="true" />
       {/* Subtle background grid, no motion */}
       <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,#3D3D3D_1px,transparent_1px),linear-gradient(to_bottom,#3D3D3D_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
@@ -42,7 +48,7 @@ const Hero = ({ onNavigate }) => {
       </div>
 
       {/* Terminal-style badge, thematically consistent with a developer's site */}
-      <div className="hidden xl:block absolute right-16 bottom-20 bg-charcoal/40 border border-charcoal p-6 w-80 font-mono text-xs">
+      <div className="hidden xl:block absolute right-16 bottom-20 z-10 bg-charcoal/40 border border-charcoal p-6 w-80 font-mono text-xs">
         <div className="flex gap-2 mb-4">
           <span className="w-3 h-3 bg-white/20 inline-block" />
           <span className="w-3 h-3 bg-accent inline-block" />
