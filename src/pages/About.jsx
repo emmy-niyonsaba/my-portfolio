@@ -1,53 +1,73 @@
-import{network,coder} from '../../public/images/index.js';
+import React from "react";
+
+const stats = [
+  { label: "Years Experience", value: "03+" },
+  { label: "Projects Completed", value: "15+" },
+  { label: "Technologies", value: "12+" },
+  { label: "System Uptime", value: "99.9%" },
+];
 
 const About = () => {
   return (
     <section
       id="about"
-      className="min-h-screen bg-gray-50 py-20 px-6 md:px-20 flex flex-col items-center gap-16"
+      className=" py-24 px-6 md:px-16 lg:px-20 bg-neutral-950 border-t border-neutral-900 flex flex-col justify-center"
     >
-      <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mb-12 text-center">
-        About Me
-      </h1>
+      <div className="max-w-5xl">
+        <p className="text-yellow-400 font-bold uppercase tracking-widest text-sm mb-2">
+          // ABOUT ME
+        </p>
+        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white mb-12">
+          ENGINEERING DRIVEN BY{" "}
+          <span className="text-yellow-400">PRECISION.</span>
+        </h2>
 
-      {/* Development Section */}
-      <div className="flex flex-col md:flex-row items-center gap-8 w-full max-w-6xl">
-        {/* Text Card */}
-        <div className="md:w-1/2 bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h3 className="font-bold text-lg text-blue-700 mb-2">Development</h3>
-          <p className="text-gray-600">
-           javaSpring boot, JavaScript, React, Node.js, PHP, Tailwind CSS — building full-stack applications.
-          </p>
+        <div className="grid md:grid-cols-2 gap-12 text-neutral-300 font-light leading-relaxed text-lg mb-16">
+          <div>
+            <p className="mb-6">
+              I am a Web Developer dedicated to engineering clean, reliable
+              digital tools. My background spans computer networking and modern
+              software development, giving me a solid understanding of both
+              full-stack systems and underlying infrastructure.
+            </p>
+            <p>
+              Whether structuring robust backend architectures with NestJS,
+              Spring Boot, or Node.js, or building fluid interactive frontend
+              systems with React and TypeScript, I emphasize modular design and
+              maintainability.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-white font-bold uppercase tracking-wider text-xl mb-4 border-l-2 border-yellow-400 pl-3">
+              Development Philosophy
+            </h3>
+            <p className="mb-6">
+              I believe code should be structured with clarity and intent.
+              Modern web engineering requires continuous learning, strict
+              adherence to clean code standards, and seamless user experiences.
+            </p>
+            <p className="text-yellow-400 font-mono text-sm">
+              "Build systems that are scale-ready, fully testable, and
+              straightforward to maintain."
+            </p>
+          </div>
         </div>
 
-        {/* Image */}
-        <div className="md:w-1/2 flex justify-center">
-          <img
-            src={coder}
-            alt="Development"
-            className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-lg border-4 border-blue-200"
-          />
-        </div>
-      </div>
-
-      {/* Networking Section */}
-      <div className="flex flex-col md:flex-row items-center gap-8 w-full max-w-6xl">
-        {/* Image */}
-        
-
-        {/* Text Card */}
-        <div className="md:w-1/2 bg-white p-6 rounded-xl shadow hover:shadow-lg transition md:order-1">
-          <h3 className="font-bold text-lg text-blue-700 mb-2">Networking</h3>
-          <p className="text-gray-600">
-            Network setup, maintenance, troubleshooting, and configuration.
-          </p>
-        </div>
-        <div className="md:w-1/2 flex justify-center md:order-2">
-          <img
-            src={network}
-            alt="Networking"
-            className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-lg border-4 border-blue-200"
-          />
+        {/* Animated Counter Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-neutral-900">
+          {stats.map((stat, idx) => (
+            <div
+              key={idx}
+              className="bg-black p-6 border border-neutral-900 hover:border-yellow-400/50 transition-colors"
+            >
+              <p className="text-4xl md:text-5xl font-black text-yellow-400 font-mono mb-2">
+                {stat.value}
+              </p>
+              <p className="text-xs uppercase tracking-widest text-neutral-500 font-bold">
+                {stat.label}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

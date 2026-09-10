@@ -1,96 +1,68 @@
-import { useEffect, useMemo, useState } from 'react';
-import './App.css';
-import HiSession from './pages/HiSession';
-import Navbar from './pages/Navbar';
-import About from './pages/About';
-import Skill from './pages/Skill';
-import Project from './pages/Project';
-import Resume from './pages/Resume';
-import Footer from './pages/Footer';
+import React, { useState, useEffect, useMemo } from "react";
+import "./App.css";
+import Sidebar from "./components/layout/Sidebar";
+import { navItems } from "./data/navigation";
+import Hero from "./sections/Hero";
+import About from "./sections/About";
+import Skills from "./sections/Skills";
+import Projects from "./sections/Projects";
+import Experience from "./sections/Experience";
+import Services from "./sections/Services";
+import Testimonials from "./sections/Testimonials";
+import Contact from "./sections/Contact";
+import Footer from "./sections/Footer";
 
-const SCROLL_OFFSET = 72;
+const SCROLL_OFFSET = 0;
 
 function App() {
-  const sections = useMemo(
-    () => [
-      { id: 'home', label: 'Home', component: <HiSession /> },
-      { id: 'about', label: 'About', component: <About /> },
-      { id: 'skills', label: 'Skills', component: <Skill /> },
-      { id: 'projects', label: 'Projects', component: <Project /> },
-      { id: 'resume', label: 'Resume', component: <Resume /> },
-      { id: 'footer', label: 'Contact', component: <Footer /> },
-    ],
-    [],
-  );
+  const [activeSection, setActiveSection] = useState(navItems[0].id);
 
-  const [activeSection, setActiveSection] = useState(sections[0].id);
-  const [showBackToTop, setShowBackToTop] = useState(false);
+  const sectionIds = useMemo(() => navItems.map((item) => item.id), []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+
+      for (const id of sectionIds) {
+        const element = document.getElementById(id);
+        if (element) {
+          const top = element.offsetTop;
+          const height = element.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(id);
+            break;
           }
-        });
-      },
-      { threshold: 0.35 },
-    );
+        }
+      }
+    };
 
-    const observed = sections
-      .map(({ id }) => document.getElementById(id))
-      .filter(Boolean);
-
-    observed.forEach((node) => observer.observe(node));
-
-    return () => observer.disconnect();
-  }, [sections]);
-
-  useEffect(() => {
-    const handleScroll = () => setShowBackToTop(window.scrollY > 320);
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionIds]);
 
   const handleNavigate = (targetId) => {
     const target = document.getElementById(targetId);
     if (!target) return;
-
-    const top = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+    window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (
-    <div className="App gradient-canvas text-slate-100">
-      <div className="app-shell">
-        <div className="ambient" aria-hidden />
-        <Navbar
-          sections={sections}
-          activeSection={activeSection}
-          onNavigate={handleNavigate}
-        />
+    <div className="bg-ink text-paper selection:bg-accent selection:text-ink">
+      <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
 
-        <main className="section-stack">
-          {sections.map(({ id, label, component }) => (
-            <section key={id} id={id} className="section-panel" aria-label={label}>
-              {component}
-            </section>
-          ))}
-        </main>
-
-        {showBackToTop && (
-          <button
-            type="button"
-            className="back-to-top"
-            onClick={() => handleNavigate('home')}
-            aria-label="Back to top"
-          >
-            ↑
-          </button>
-        )}
-      </div>
+      <main className="lg:pl-72 w-full min-h-screen">
+        <Hero onNavigate={handleNavigate} />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Services />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </main>
     </div>
   );
 }
