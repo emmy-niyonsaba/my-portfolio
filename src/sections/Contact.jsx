@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import SectionHeader from "../components/ui/SectionHeader";
 import { contactInfo } from "../data/contact";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setFormData((current) => ({ ...current, [id]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const message = formData.message.trim()
+      ? formData.message.trim()
+      : `Hello, my name is ${formData.name.trim()}. My email is ${formData.email.trim()}.`;
+
+    if (!formData.message.trim()) {
+      const shouldSend = window.confirm(
+        "Your message box is empty. Send a simple message with your name and email?",
+      );
+
+      if (!shouldSend) return;
+    }
+
+    const whatsappUrl = `https://wa.me/250790231509?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section
       id="contact"
@@ -18,8 +48,8 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-12">
           <div className="flex flex-col justify-between">
             <p className="text-white/70 text-lg font-light leading-relaxed mb-8">
-              I am open to full-stack engineering roles, technical
-              contracting, and collaborative software projects.
+              I am open to full-stack engineering roles, technical contracting,
+              and collaborative software projects.
             </p>
 
             <div className="flex flex-col gap-6 font-mono text-sm">
@@ -63,40 +93,57 @@ const Contact = () => {
           </div>
 
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
             className="bg-charcoal/20 p-8 border border-charcoal flex flex-col gap-6"
           >
             <div>
-              <label htmlFor="name" className="block text-xs uppercase tracking-widest text-white/60 font-bold mb-2">
+              <label
+                htmlFor="name"
+                className="block text-xs uppercase tracking-widest text-white/60 font-bold mb-2"
+              >
                 Your Name
               </label>
               <input
                 id="name"
                 type="text"
+                value={formData.name}
+                onChange={handleChange}
+                required
                 placeholder="John Doe"
                 className="w-full bg-ink border border-charcoal text-paper p-4 focus:outline-none focus:border-accent transition-colors"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-xs uppercase tracking-widest text-white/60 font-bold mb-2">
+              <label
+                htmlFor="email"
+                className="block text-xs uppercase tracking-widest text-white/60 font-bold mb-2"
+              >
                 Email Address
               </label>
               <input
                 id="email"
                 type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
                 placeholder="john@example.com"
                 className="w-full bg-ink border border-charcoal text-paper p-4 focus:outline-none focus:border-accent transition-colors"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-xs uppercase tracking-widest text-white/60 font-bold mb-2">
+              <label
+                htmlFor="message"
+                className="block text-xs uppercase tracking-widest text-white/60 font-bold mb-2"
+              >
                 Message
               </label>
               <textarea
                 id="message"
                 rows="4"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Tell me about your project..."
                 className="w-full bg-ink border border-charcoal text-paper p-4 focus:outline-none focus:border-accent transition-colors"
               ></textarea>
