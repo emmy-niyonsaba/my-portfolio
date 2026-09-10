@@ -26,7 +26,7 @@ const Sidebar = ({ activeSection, onNavigate }) => {
           href="#home"
           className="text-xl font-black tracking-tighter text-white"
         >
-          EMMANUEL<span className="text-yellow-400">.</span>
+          EMMANUEL Niyonsaba<span className="text-yellow-400">.</span>
         </a>
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -61,7 +61,7 @@ const Sidebar = ({ activeSection, onNavigate }) => {
         {/* Brand Header */}
         <div>
           <h1 className="text-2xl font-black tracking-widest text-white uppercase">
-            EMMANUEL<span className="text-yellow-400">.</span>
+            EMMANUEL Niyonsaba<span className="text-yellow-400">.</span>
           </h1>
           <p className="text-xs uppercase tracking-widest text-neutral-500 font-semibold mt-1">
             Software Developer

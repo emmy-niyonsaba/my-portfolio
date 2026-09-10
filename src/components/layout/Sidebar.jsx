@@ -14,8 +14,11 @@ const Sidebar = ({ activeSection, onNavigate }) => {
     <>
       {/* Mobile top bar */}
       <div className="lg:hidden fixed top-0 left-0 w-full bg-ink/95 backdrop-blur-sm border-b border-charcoal z-50 flex items-center justify-between px-6 py-4">
-        <a href="#home" className="text-xl font-black tracking-tight text-paper">
-          EMMANUEL<span className="text-accent">.</span>
+        <a
+          href="#home"
+          className="text-xl font-black tracking-tight text-paper"
+        >
+          EMMANUEL Niyonsaba<span className="text-accent">.</span>
         </a>
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -67,7 +70,9 @@ const Sidebar = ({ activeSection, onNavigate }) => {
               >
                 <span
                   className={`text-sm font-bold uppercase tracking-widest transition-colors ${
-                    isActive ? "text-accent" : "text-white/50 group-hover:text-paper"
+                    isActive
+                      ? "text-accent"
+                      : "text-white/50 group-hover:text-paper"
                   }`}
                 >
                   {label}
